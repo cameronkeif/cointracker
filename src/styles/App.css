@@ -34,3 +34,8 @@ img.coin-image {
 .coin-table td, .coin-table th {
   padding: 0px 20px;
 }
+
+.header-btc-logo {
+  height: 20px;
+  width: 20px;
+}
