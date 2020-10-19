@@ -14,7 +14,7 @@ const App = () => (
       <CoinRows />
     </header>
     <footer>
-      Data provided byCoinranking
+      Data provided by Coinranking
     </footer>
   </div>
 );
