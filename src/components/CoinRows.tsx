@@ -34,13 +34,13 @@ const CoinRows = () => {
   }
 
   return (
-    <table>
+    <table className="coin-table">
       <thead>
         <tr>
           <th>Name</th>
           <th>Symbol</th>
-          <th>Price</th>
-          <th>Change</th>
+          <th>Price ($)</th>
+          <th>24 Hour Change</th>
         </tr>
       </thead>
       <tbody>

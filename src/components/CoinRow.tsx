@@ -10,7 +10,10 @@ type CoinRowProps = {
  */
 const CoinRow = ({ coin }: CoinRowProps) => (
   <tr className="coin-row">
-    <td>{coin.name}</td>
+    <td>
+      <img className="coin-image" src={coin.iconUrl} alt={coin.name} />
+      {coin.name}
+    </td>
     <td>{coin.symbol}</td>
     <td>{parseFloat(coin.price).toFixed(2)}</td>
     <td>{coin.change}</td>

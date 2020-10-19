@@ -5,7 +5,8 @@ interface CoinItem {
   name: string,
   price: string,
   change: number,
-  uuid: string
+  uuid: string,
+  iconUrl: string;
 }
 
 interface CoinData {
