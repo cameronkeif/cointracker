@@ -39,3 +39,11 @@ img.coin-image {
   height: 20px;
   width: 20px;
 }
+
+.positive-change {
+  color: green;
+}
+
+.negative-change {
+  color: red;
+}

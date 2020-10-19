@@ -15,7 +15,6 @@ The cryptocurrency data is provided by coinranking's public API.
 * Allow users to select any of the coins available through the API.
 * Allow users to select any of the base currencies available through the API (USD, EUR, JPY, etc.)
 * Explore using the [spot endpoint coinbase](https://developers.coinbase.com/api/v2#get-spot-price). This updates much more frequently, so we can do better realtime updates. Available currencies are [here](https://help.coinbase.com/en/coinbase/getting-started/general-crypto-education/supported-cryptocurrencies)
-* Better styling of page elements, add icons, hook up SASS and clean up the CSS, etc.
 
 ## Available Scripts
 

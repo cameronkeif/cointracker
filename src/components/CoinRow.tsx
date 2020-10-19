@@ -16,7 +16,10 @@ const CoinRow = ({ coin }: CoinRowProps) => (
     </td>
     <td>{coin.symbol}</td>
     <td>{parseFloat(coin.price).toFixed(2)}</td>
-    <td>{coin.change}</td>
+    <td className={coin.change >= 0 ? 'positive-change' : 'negative-change'}>
+      {coin.change}
+      %
+    </td>
   </tr>
 );
 

@@ -40,7 +40,7 @@ const CoinRows = () => {
           <th>Name</th>
           <th>Symbol</th>
           <th>Price ($)</th>
-          <th>24 Hour Change</th>
+          <th>Change (24hr)</th>
         </tr>
       </thead>
       <tbody>
