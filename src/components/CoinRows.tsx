@@ -8,7 +8,7 @@ const CoinRows = () => {
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const symbols = ['BTC', 'ETH', 'USDT', 'XRP', 'BCH', 'BNB', 'LINK', 'DOT', 'ADA', 'LTC']; // TODO remove this in favor of the state which will be configurable
+    const symbols = ['BTC', 'ETH', 'USDT', 'XRP', 'BCH', 'BNB', 'LINK', 'ADA', 'LTC', 'BSV']; // TODO remove this in favor of the state which will be configurable
     api.getCoinData(symbols)
       .then((res) => {
         setCoins(res.body.data.coins);
