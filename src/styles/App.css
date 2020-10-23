@@ -6,7 +6,7 @@ body {
   background-color: white;
   font-size: 16px;
   color: #292929;
-  font-family: Helvetica, Arial, sans-serif
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 footer {
@@ -17,16 +17,9 @@ footer {
   text-align: center;
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .coin-table {
-  text-align: left
+  text-align: center;
+  margin: auto;
 }
 
 img.coin-image {
@@ -62,4 +55,8 @@ img.loading {
 
 .negative-change {
   color: red;
+}
+
+.coin-row {
+  text-align: left;
 }
