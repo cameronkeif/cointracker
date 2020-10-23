@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CoinRow from './CoinRow';
 import api from '../api';
 import { CoinItem } from '../react-app-env';
+import spinnerIcon from '../assets/spinner.png';
 
 const CoinRows = () => {
   // const [symbols, setSymbols] = useState(['BTC', 'ETH']); // TODO allow this to be configured
@@ -30,7 +31,11 @@ const CoinRows = () => {
   ));
 
   if (isLoading) {
-    return <div>Loading...</div>; // TODO this could probably be nicer,
+    return (
+      <div>
+        <img src={spinnerIcon} className="loading" alt="Loading" />
+      </div>
+    );
   }
 
   return (
