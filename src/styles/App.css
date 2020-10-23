@@ -47,6 +47,10 @@ img.loading {
   padding: 0px 20px;
 }
 
+.coin-table td:first-child {
+  white-space: nowrap;
+}
+
 .header-btc-logo {
   height: 20px;
   width: 20px;
