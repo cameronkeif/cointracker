@@ -15,7 +15,18 @@ const CoinRow = ({ coin }: CoinRowProps) => (
       {coin.name}
     </td>
     <td>{coin.symbol}</td>
-    <td>{parseFloat(coin.price).toFixed(2)}</td>
+    <td>
+      {
+      parseFloat(coin.price).toLocaleString(
+        undefined,
+        {
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        },
+      )
+}
+
+    </td>
     <td className={coin.change >= 0 ? 'positive-change' : 'negative-change'}>
       {coin.change}
       %
