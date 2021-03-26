@@ -1,5 +1,5 @@
 import React, {
-  useEffect, useState, Fragment, ChangeEvent,
+  useEffect, useState, Fragment, ChangeEvent, KeyboardEvent,
 } from 'react';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
@@ -116,6 +116,11 @@ const CoinRows = () => {
             event: ChangeEvent<{}>,
             newSelectedCoin: { name: string; symbol: string; } | null,
           ) => { setSelectedCoin(newSelectedCoin); }}
+          onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
+            if (event.key === 'Enter') {
+              addCoin();
+            }
+          }}
           value={selectedCoin}
         />
         <IconButton
