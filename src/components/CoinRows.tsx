@@ -10,23 +10,25 @@ import Autocomplete, { AutocompleteRenderInputParams } from '@material-ui/lab/Au
 import request from 'superagent';
 import CoinRow from './CoinRow';
 import api from '../api';
-import { CoinItem } from '../react-app-env';
+import { CoinItem, CoinOption } from '../react-app-env';
 import spinnerIcon from '../assets/spinner.png';
+
+import coinOptions from '../data/coin-options.json';
 
 const CoinRows = () => {
   const [symbols, setSymbols] = useState<Array<string>>([]);
-  const [symbolBeingAdded, setSymbolBeingAdded] = useState<null | string>(null);
+  const [selectedCoin, setSelectedCoin] = useState<null | CoinOption>(null);
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTimerId, setActiveTimerId] = useState<null | NodeJS.Timeout>(null);
 
   const addSymbol = () => {
-    if (symbolBeingAdded === null) {
+    if (selectedCoin === null) {
       return;
     }
 
-    setSymbols([...symbols, symbolBeingAdded]);
-    setSymbolBeingAdded(null);
+    setSymbols([...symbols, selectedCoin.symbol]);
+    setSelectedCoin(null);
 
     if (activeTimerId) {
       clearInterval(activeTimerId);
@@ -59,7 +61,7 @@ const CoinRows = () => {
     />
   ));
 
-  const addButtonColor = symbolBeingAdded ? green[500] : grey[500];
+  const addButtonColor = selectedCoin ? green[500] : grey[500];
   return (
     <>
       <table className="coin-table">
@@ -81,32 +83,25 @@ const CoinRows = () => {
       >
         <Autocomplete
           id="combo-box-demo"
-          options={[
-            'BTC',
-            'ETH',
-            'BSV',
-          ]}
+          options={coinOptions.filter((coinOption: CoinOption) => !symbols.includes(coinOption.symbol))}
           style={{ width: 300, margin: 'auto', display: 'inline-block' }}
           renderInput={(params: AutocompleteRenderInputParams) => <TextField {...params} label="Add coin" size="small" variant="outlined" />}
+          getOptionLabel={(coinOption: CoinOption) => `${coinOption.name} (${coinOption.symbol})`}
           onChange={(
             event: ChangeEvent<{}>,
-            updatedSymbol: string | null,
-          ) => { setSymbolBeingAdded(updatedSymbol); }}
-          value={symbolBeingAdded}
+            newSelectedCoin: { name: string; symbol: string; } | null,
+          ) => { setSelectedCoin(newSelectedCoin); }}
+          value={selectedCoin}
         />
-        <Tooltip title="Add" aria-label="add">
-          <span>
-            <IconButton
-              disabled={!symbolBeingAdded}
-              onClick={addSymbol}
-            >
-              <AddCircleIcon
-                style={{ color: addButtonColor, cursor: 'pointer' }}
-                fontSize="large"
-              />
-            </IconButton>
-          </span>
-        </Tooltip>
+        <IconButton
+          disabled={!selectedCoin}
+          onClick={addSymbol}
+        >
+          <AddCircleIcon
+            style={{ color: addButtonColor, cursor: 'pointer' }}
+            fontSize="large"
+          />
+        </IconButton>
       </div>
       {isLoading && symbols.length > 0 && <div><img src={spinnerIcon} className="loading" alt="Loading" /></div>}
     </>
