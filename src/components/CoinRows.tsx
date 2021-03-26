@@ -14,7 +14,7 @@ import { CoinItem } from '../react-app-env';
 import spinnerIcon from '../assets/spinner.png';
 
 const CoinRows = () => {
-  const [symbols, setSymbols] = useState(['BTC', 'ETH']);
+  const [symbols, setSymbols] = useState<Array<string>>([]);
   const [symbolBeingAdded, setSymbolBeingAdded] = useState<null | string>(null);
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,33 +34,30 @@ const CoinRows = () => {
   };
 
   useEffect(() => {
+    if (symbols.length === 0) {
+      return;
+    }
+
     api.getCoinData(symbols)
       .then((res: request.Response) => {
         setCoins(res.body.data.coins);
         setIsLoading(false); // Clear initial loading state.
       });
     setActiveTimerId(setInterval(() => {
+      setIsLoading(true);
       api.getCoinData(symbols)
         .then((res: request.Response) => {
           setCoins(res.body.data.coins);
+          setIsLoading(false);
         });
     }, 15000));
   }, [symbols]);
-
   const coinRows = coins.map((coin: CoinItem) => (
     <CoinRow
       coin={coin}
       key={`coin-row-${coin.uuid}`}
     />
   ));
-
-  if (isLoading) {
-    return (
-      <div>
-        <img src={spinnerIcon} className="loading" alt="Loading" />
-      </div>
-    );
-  }
 
   const addButtonColor = symbolBeingAdded ? green[500] : grey[500];
   return (
@@ -111,6 +108,7 @@ const CoinRows = () => {
           </span>
         </Tooltip>
       </div>
+      {isLoading && symbols.length > 0 && <div><img src={spinnerIcon} className="loading" alt="Loading" /></div>}
     </>
   );
 };
