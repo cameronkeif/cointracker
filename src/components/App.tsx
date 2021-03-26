@@ -11,8 +11,8 @@ const App = () => (
         <img src={bitcoinLogo} className="header-btc-logo" alt="bitcoin logo as an O" />
         intracker
       </h1>
-      <CoinRows />
     </header>
+    <CoinRows />
     <footer>
       Data provided by Coinranking
     </footer>

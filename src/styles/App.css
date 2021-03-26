@@ -11,6 +11,13 @@ body {
 
 footer {
   font-size: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+label > select {
+  margin-left: 5px;
 }
 
 .App {
