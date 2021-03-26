@@ -8,6 +8,6 @@ module.exports = {
   extends: ['airbnb-typescript'],
   rules: {
     "react/jsx-props-no-spreading": 0,
-    "max-len": 120
+    "max-len": ["error", { "code": 120 }]
   }
 };
