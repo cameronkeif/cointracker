@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
+import React, { ChangeEvent, KeyboardEvent } from 'react';
 import { green, grey } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,13 +8,13 @@ import Autocomplete, { AutocompleteRenderInputParams } from '@material-ui/lab/Au
 import { CoinOption } from '../react-app-env';
 import coinOptions from '../data/coin-options.json';
 
-type AddCoinRowProps = {
+export type AddCoinRowProps = {
   onAdd: Function,
   selectedSymbols: Set<string>
 };
 
 const AddCoinRow = ({ onAdd, selectedSymbols }: AddCoinRowProps) => {
-  const [selectedCoin, setSelectedCoin] = useState<null | CoinOption>(null);
+  const [selectedCoin, setSelectedCoin] = React.useState<null | CoinOption>(null);
 
   const addCoin = () => {
     if (selectedCoin === null) {
@@ -42,6 +42,7 @@ const AddCoinRow = ({ onAdd, selectedSymbols }: AddCoinRowProps) => {
             label="Add coin"
             size="small"
             variant="outlined"
+            data-id="coin-input"
           />
         )}
         getOptionLabel={(coinOption: CoinOption) => `${coinOption.name} (${coinOption.symbol})`}
@@ -59,6 +60,7 @@ const AddCoinRow = ({ onAdd, selectedSymbols }: AddCoinRowProps) => {
       <IconButton
         disabled={!selectedCoin}
         onClick={addCoin}
+        data-id="add-btn"
       >
         <AddCircleIcon
           style={{ color: addButtonColor, cursor: 'pointer' }}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 
 import request from 'superagent';
 
@@ -9,10 +9,10 @@ import { CoinItem, CoinOption } from '../react-app-env';
 import spinnerIcon from '../assets/spinner.png';
 
 const CoinRows = () => {
-  const [symbols, setSymbols] = useState<Set<string>>(new Set());
-  const [coins, setCoins] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [activeTimerId, setActiveTimerId] = useState<null | NodeJS.Timeout>(null);
+  const [symbols, setSymbols] = React.useState<Set<string>>(new Set());
+  const [coins, setCoins] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [activeTimerId, setActiveTimerId] = React.useState<null | NodeJS.Timeout>(null);
 
   const addCoin = (selectedCoin: CoinOption) => {
     const updatedSymbols = new Set(symbols);
@@ -58,6 +58,7 @@ const CoinRows = () => {
         });
     }, 15000));
   }, [symbols]);
+
   const coinRows = coins.map((coin: CoinItem) => (
     <CoinRow
       coin={coin}

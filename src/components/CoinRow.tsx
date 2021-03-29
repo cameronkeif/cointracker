@@ -4,7 +4,7 @@ import RemoveIcon from '@material-ui/icons/RemoveCircle';
 
 import { CoinItem } from '../react-app-env';
 
-type CoinRowProps = {
+export type CoinRowProps = {
   coin: CoinItem,
   onRemove: Function,
 };

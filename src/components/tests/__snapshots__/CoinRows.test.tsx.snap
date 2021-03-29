@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoinRows.tsx renders correctly - empty 1`] = `ShallowWrapper {}`;
+
+exports[`CoinRows.tsx renders correctly - loading 1`] = `ShallowWrapper {}`;
+
+exports[`CoinRows.tsx renders correctly - populated 1`] = `ShallowWrapper {}`;

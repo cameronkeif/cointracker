@@ -14,5 +14,6 @@ module.exports = {
     "react/jsx-props-no-spreading": 0,
     "react/jsx-fragments": "off",
     "max-len": ["error", { "code": 120 }],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.*", "src/setupTests.ts"]}]
   }
 };
