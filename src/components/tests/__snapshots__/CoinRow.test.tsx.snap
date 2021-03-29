@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoinRow.tsx renders correctly (negative change) 1`] = `ShallowWrapper {}`;
+
+exports[`CoinRow.tsx renders correctly (positive change) 1`] = `ShallowWrapper {}`;
