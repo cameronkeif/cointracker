@@ -67,7 +67,7 @@ const CoinRows = () => {
   ));
 
   return (
-    <>
+    <Fragment>
       <table className="coin-table">
         <thead>
           <tr>
@@ -83,7 +83,7 @@ const CoinRows = () => {
       </table>
       <AddCoinRow onAdd={addCoin} selectedSymbols={symbols} />
       {isLoading && symbols.size > 0 && <div><img src={spinnerIcon} className="loading" alt="Loading" /></div>}
-    </>
+    </Fragment>
   );
 };
 

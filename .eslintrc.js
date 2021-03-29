@@ -7,7 +7,12 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   extends: ['airbnb-typescript'],
   rules: {
+    // Fix typescript error around "'React' was used before it was defined".
+    // See https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined/64024916#64024916
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-props-no-spreading": 0,
-    "max-len": ["error", { "code": 120 }]
+    "react/jsx-fragments": "off",
+    "max-len": ["error", { "code": 120 }],
   }
 };
