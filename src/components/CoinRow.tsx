@@ -1,4 +1,5 @@
 import React from 'react';
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 import { red } from '@material-ui/core/colors';
 import RemoveIcon from '@material-ui/icons/RemoveCircle';
 
@@ -34,6 +35,11 @@ const CoinRow = ({ coin, onRemove }: CoinRowProps) => (
     <td className={coin.change >= 0 ? 'positive-change' : 'negative-change'}>
       {coin.change}
       %
+    </td>
+    <td>
+      <Sparklines data={coin.history} svgWidth={100} svgHeight={26} margin={5}>
+        <SparklinesLine color={coin.change >= 0 ? 'green' : 'red'} />
+      </Sparklines>
     </td>
     <td>
       <RemoveIcon
