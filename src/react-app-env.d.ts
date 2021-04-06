@@ -8,6 +8,7 @@ interface CoinItem {
   change: number,
   uuid: string,
   iconUrl: string,
+  history: Array,
 }
 
 // Used for the Autocomplete option to be used for coin selection
