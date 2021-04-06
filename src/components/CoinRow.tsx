@@ -37,7 +37,7 @@ const CoinRow = ({ coin, onRemove }: CoinRowProps) => (
       %
     </td>
     <td>
-      <Sparklines data={coin.history} svgWidth={100} svgHeight={26} margin={5}>
+      <Sparklines data={coin.history.map((price) => parseFloat(price))} svgWidth={100} svgHeight={26} margin={5}>
         <SparklinesLine color={coin.change >= 0 ? 'green' : 'red'} />
       </Sparklines>
     </td>
