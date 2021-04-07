@@ -43,10 +43,19 @@ img.loading {
 
 .coin-table td, .coin-table th {
   padding: 0px 20px;
+  white-space: nowrap;
 }
 
 .coin-table td:first-child {
   white-space: nowrap;
+}
+
+.coin-table td:last-child {
+  padding: 0;
+}
+
+.coin-table .sparkline-container {
+  margin: 0px 10px;
 }
 
 .header-btc-logo {

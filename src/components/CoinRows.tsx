@@ -8,7 +8,7 @@ import api from '../api';
 import { CoinItem, CoinOption } from '../react-app-env';
 import spinnerIcon from '../assets/spinner.png';
 
-const CoinRows = () => {
+const CoinRows: React.FC = () => {
   const [symbols, setSymbols] = React.useState<Set<string>>(new Set());
   const [coins, setCoins] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);

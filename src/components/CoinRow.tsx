@@ -13,7 +13,7 @@ export type CoinRowProps = {
 /**
  * A row in the coin table, takes in a coin and outputs the necessary table row
  */
-const CoinRow = ({ coin, onRemove }: CoinRowProps) => (
+const CoinRow: React.FC<CoinRowProps> = ({ coin, onRemove }: CoinRowProps) => (
   <tr className="coin-row">
     <td>
       <img className="coin-image" src={coin.iconUrl} alt={coin.name} />
@@ -22,26 +22,23 @@ const CoinRow = ({ coin, onRemove }: CoinRowProps) => (
     <td>{coin.symbol}</td>
     <td>
       {
-      parseFloat(coin.price).toLocaleString(
-        undefined,
-        {
-          maximumFractionDigits: 2,
-          minimumFractionDigits: 2,
-        },
-      )
-}
-
+        parseFloat(coin.price).toLocaleString(
+          undefined,
+          {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+          },
+        )
+      }
     </td>
     <td className={coin.change >= 0 ? 'positive-change' : 'negative-change'}>
-      {coin.change}
+      {coin.change.toFixed(2)}
       %
-    </td>
-    <td>
-      <Sparklines data={coin.history.map((price) => parseFloat(price))} svgWidth={100} svgHeight={26} margin={5}>
-        <SparklinesLine color={coin.change >= 0 ? 'green' : 'red'} />
-      </Sparklines>
-    </td>
-    <td>
+      <span className="sparkline-container">
+        <Sparklines data={coin.history.map((price) => parseFloat(price))} svgWidth={50} svgHeight={15} margin={5}>
+          <SparklinesLine color={coin.change >= 0 ? 'green' : 'red'} />
+        </Sparklines>
+      </span>
       <RemoveIcon
         style={{ color: red[500], cursor: 'pointer' }}
         fontSize="small"

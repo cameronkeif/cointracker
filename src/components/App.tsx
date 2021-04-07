@@ -3,7 +3,7 @@ import '../styles/App.css';
 import bitcoinLogo from '../assets/bitcoin.svg';
 import CoinRows from './CoinRows';
 
-const App = () => (
+const App: React.FC = () => (
   <div className="App">
     <header className="App-header">
       <h1>

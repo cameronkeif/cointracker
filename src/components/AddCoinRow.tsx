@@ -13,7 +13,7 @@ export type AddCoinRowProps = {
   selectedSymbols: Set<string>
 };
 
-const AddCoinRow = ({ onAdd, selectedSymbols }: AddCoinRowProps) => {
+const AddCoinRow: React.FC<AddCoinRowProps> = ({ onAdd, selectedSymbols }: AddCoinRowProps) => {
   const [selectedCoin, setSelectedCoin] = React.useState<null | CoinOption>(null);
 
   const addCoin = () => {
