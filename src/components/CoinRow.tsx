@@ -39,6 +39,8 @@ const CoinRow: React.FC<CoinRowProps> = ({ coin, onRemove }: CoinRowProps) => (
           <SparklinesLine color={coin.change >= 0 ? 'green' : 'red'} />
         </Sparklines>
       </span>
+    </td>
+    <td>
       <RemoveIcon
         style={{ color: red[500], cursor: 'pointer' }}
         fontSize="small"

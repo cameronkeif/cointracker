@@ -41,6 +41,14 @@ img.loading {
     height: 20px;
 }
 
+.coin-table {
+  border-collapse: collapse;
+}
+
+.coin-table tbody > tr:hover {
+  background: #c7dcff;
+}
+
 .coin-table td, .coin-table th {
   padding: 0px 20px;
   white-space: nowrap;
