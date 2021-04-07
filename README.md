@@ -10,12 +10,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The cryptocurrency data is provided by coinranking's public API.
 
-## Coming soon
-* Tests (lol it's almost 11:30 on Sunday and football is about to start so I haven't written them. I probably will after the Lions blow another lead.)
-* Allow users to select any of the coins available through the API.
-* Allow users to select any of the base currencies available through the API (USD, EUR, JPY, etc.)
-* Explore using the [spot endpoint coinbase](https://developers.coinbase.com/api/v2#get-spot-price). This updates much more frequently, so we can do better realtime updates. Available currencies are [here](https://help.coinbase.com/en/coinbase/getting-started/general-crypto-education/supported-cryptocurrencies)
-
 ## Available Scripts
 
 In the project directory, you can run:
