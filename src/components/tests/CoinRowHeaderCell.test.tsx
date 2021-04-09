@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
 import CoinRowHeaderCell, { CoinRowHeaderCellProps } from '../CoinRowHeaderCell';
-import { TableSortType } from '../../utilities/enums';
+import { TableSortDirection, TableSortType } from '../../utilities/enums';
 
 const render = (
   renderFunction: Function,
@@ -24,5 +24,11 @@ describe('CoinRowHeaderCell', () => {
   it('renders as expected (ascending)', () => {
     const sortedIcon = <ArrowDropUpIcon fontSize="small" />;
     expect(render(shallow, { ...defaultProps, sortedIcon })).toMatchSnapshot();
+  });
+
+  it('renders as expected (ascending)', () => {
+    const sortedIcon = <ArrowDropUpIcon fontSize="small" />;
+    expect(render(shallow, { ...defaultProps, sortedIcon, defaultSortDirection: TableSortDirection.Descending }))
+      .toMatchSnapshot();
   });
 });
