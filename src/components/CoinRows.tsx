@@ -29,6 +29,15 @@ const sortCoins = (coins: Array<CoinItem>, tableSort: TableSort): void => {
 
       return b[sortType] - a[sortType];
     });
+  } else if (sortType === TableSortType.Price) {
+    // convert to number, then do numeric comparison
+    coins.sort((a: CoinItem, b: CoinItem) => {
+      if (sortDirection === TableSortDirection.Ascending) {
+        return parseFloat(a[sortType]) - parseFloat(b[sortType]);
+      }
+
+      return parseFloat(b[sortType]) - parseFloat(a[sortType]);
+    });
   } else {
     coins.sort((a:CoinItem, b: CoinItem) => {
       // String comparison
