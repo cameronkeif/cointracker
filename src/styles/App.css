@@ -49,6 +49,13 @@ img.loading {
   background: #c7dcff;
 }
 
+.coin-table th div {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .coin-table td, .coin-table th {
   padding: 0px 20px;
   white-space: nowrap;

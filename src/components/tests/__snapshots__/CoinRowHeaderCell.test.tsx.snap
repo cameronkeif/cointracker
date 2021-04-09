@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoinRowHeaderCell renders as expected (ascending) 1`] = `ShallowWrapper {}`;
+
+exports[`CoinRowHeaderCell renders as expected (ascending) 2`] = `ShallowWrapper {}`;
+
+exports[`CoinRowHeaderCell renders as expected (no sortedIcon) 1`] = `ShallowWrapper {}`;
