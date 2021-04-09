@@ -1,8 +1,10 @@
 import React from 'react';
 import nock from 'nock';
 import { shallow, mount } from 'enzyme';
-import CoinRows from '../CoinRows';
+
+import CoinRows, { TableSort } from '../CoinRows';
 import coinItem from '../../resources/coinItem';
+import { TableSortType, TableSortDirection } from '../../utilities/enums';
 
 const flushPromises = () => new Promise(setImmediate);
 
@@ -27,7 +29,8 @@ describe('CoinRows.tsx', () => {
       .mockReturnValueOnce([new Set(), {}])
       .mockReturnValueOnce([[], {}])
       .mockReturnValueOnce([true, {}])
-      .mockReturnValueOnce([null, {}]);
+      .mockReturnValueOnce([null, {}])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, {}]);
 
     expect(shallow(<CoinRows />)).toMatchSnapshot();
   });
@@ -37,7 +40,8 @@ describe('CoinRows.tsx', () => {
       .mockReturnValueOnce([new Set(['BTC']), {}])
       .mockReturnValueOnce([[coinItem], {}])
       .mockReturnValueOnce([false, {}])
-      .mockReturnValueOnce([null, {}]);
+      .mockReturnValueOnce([null, {}])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, {}]);
 
     expect(shallow(<CoinRows />)).toMatchSnapshot();
   });
@@ -51,6 +55,7 @@ describe('CoinRows.tsx', () => {
       .mockReturnValueOnce([[coinItem], jest.fn()])
       .mockReturnValueOnce([false, jest.fn()])
       .mockReturnValueOnce([null, jest.fn()])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, jest.fn()])
       .mockReturnValueOnce([null, jest.fn()]);
 
     mount(<CoinRows />);
@@ -84,6 +89,7 @@ describe('CoinRows.tsx', () => {
       .mockReturnValueOnce([[coinItem], jest.fn()])
       .mockReturnValueOnce([false, jest.fn()])
       .mockReturnValueOnce([5, jest.fn()])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, jest.fn()])
       .mockReturnValueOnce([{ name: 'Dogecoin', symbol: 'DOGE' }, jest.fn()]);
 
     testAdd(true, setSymbols);
@@ -97,6 +103,7 @@ describe('CoinRows.tsx', () => {
       .mockReturnValueOnce([[coinItem], jest.fn()])
       .mockReturnValueOnce([false, jest.fn()])
       .mockReturnValueOnce([null, jest.fn()])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, jest.fn()])
       .mockReturnValueOnce([{ name: 'Dogecoin', symbol: 'DOGE' }, jest.fn()]);
 
     testAdd(false, setSymbols);
@@ -146,6 +153,7 @@ describe('CoinRows.tsx', () => {
       .mockReturnValueOnce([[coinItem, coinItem2], setCoins])
       .mockReturnValueOnce([false, jest.fn()])
       .mockReturnValueOnce([5, jest.fn()])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, jest.fn()])
       .mockReturnValueOnce([null, jest.fn()]);
 
     testDelete(true, setSymbols, new Set(['DOGE']), setCoins, false);
@@ -160,8 +168,99 @@ describe('CoinRows.tsx', () => {
       .mockReturnValueOnce([[coinItem], setCoins])
       .mockReturnValueOnce([false, jest.fn()])
       .mockReturnValueOnce([null, jest.fn()])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, jest.fn()])
       .mockReturnValueOnce([null, jest.fn()]);
 
     testDelete(false, setSymbols, new Set(), setCoins, true);
+  });
+
+  const testSort: void = (headerIndex: number, expectedTableSort: TableSort, setSortType: Function) => {
+    const component = mount(<CoinRows />);
+
+    const nameHeader = component.find('th > div');
+
+    nameHeader.at(headerIndex).simulate('keydown', { key: 'Enter' });
+    expect(setSortType.mock.calls[0][0]).toEqual(expectedTableSort);
+
+    nameHeader.at(headerIndex).simulate('click');
+    expect(setSortType.mock.calls[0][0]).toEqual(expectedTableSort);
+
+    // Clear and retry with keypress
+    jest.clearAllMocks();
+
+    nameHeader.at(headerIndex).simulate('keydown', { key: 'Enter' });
+    expect(setSortType.mock.calls[0][0]).toEqual(expectedTableSort);
+  };
+
+  it('Handles changing the sort order (same sort field)', () => {
+    const coinItem2 = {
+      ...coinItem,
+      name: 'Dogecoin',
+      symbol: 'DOGE',
+      uuid: 'Qwsogvtv82FCe',
+    };
+
+    const setSymbols = jest.fn();
+    const setCoins = jest.fn();
+
+    const setSortType = jest.fn();
+
+    React.useState = jest.fn()
+      .mockReturnValueOnce([new Set(['BTC', 'DOGE']), setSymbols])
+      .mockReturnValueOnce([[coinItem, coinItem2], setCoins])
+      .mockReturnValueOnce([false, jest.fn()])
+      .mockReturnValueOnce([5, jest.fn()])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, setSortType])
+      .mockReturnValueOnce([null, jest.fn()]);
+
+    testSort(0, { sortDirection: TableSortDirection.Descending, sortType: TableSortType.Name }, setSortType);
+  });
+
+  it('Handles changing the sort order (different sort field - default ascending)', () => {
+    const coinItem2 = {
+      ...coinItem,
+      name: 'Dogecoin',
+      symbol: 'DOGE',
+      uuid: 'Qwsogvtv82FCe',
+    };
+
+    const setSymbols = jest.fn();
+    const setCoins = jest.fn();
+
+    const setSortType = jest.fn();
+
+    React.useState = jest.fn()
+      .mockReturnValueOnce([new Set(['BTC', 'DOGE']), setSymbols])
+      .mockReturnValueOnce([[coinItem, coinItem2], setCoins])
+      .mockReturnValueOnce([false, jest.fn()])
+      .mockReturnValueOnce([5, jest.fn()])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, setSortType])
+      .mockReturnValueOnce([null, jest.fn()]);
+
+    testSort(1, { sortDirection: TableSortDirection.Ascending, sortType: TableSortType.Symbol }, setSortType);
+  });
+
+  it('Handles changing the sort order (different sort field - default descending)', () => {
+    const coinItem2 = {
+      ...coinItem,
+      name: 'Dogecoin',
+      symbol: 'DOGE',
+      uuid: 'Qwsogvtv82FCe',
+    };
+
+    const setSymbols = jest.fn();
+    const setCoins = jest.fn();
+
+    const setSortType = jest.fn();
+
+    React.useState = jest.fn()
+      .mockReturnValueOnce([new Set(['BTC', 'DOGE']), setSymbols])
+      .mockReturnValueOnce([[coinItem, coinItem2], setCoins])
+      .mockReturnValueOnce([false, jest.fn()])
+      .mockReturnValueOnce([5, jest.fn()])
+      .mockReturnValueOnce([{ sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending }, setSortType])
+      .mockReturnValueOnce([null, jest.fn()]);
+
+    testSort(2, { sortDirection: TableSortDirection.Descending, sortType: TableSortType.Price }, setSortType);
   });
 });
