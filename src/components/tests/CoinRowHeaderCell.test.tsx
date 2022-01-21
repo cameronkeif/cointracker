@@ -1,16 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-
+import { render } from '@testing-library/react';
 import CoinRowHeaderCell, { CoinRowHeaderCellProps } from '../CoinRowHeaderCell';
 import { TableSortDirection, TableSortType } from '../../utilities/enums';
 
-const render = (
-  renderFunction: Function,
-  props: CoinRowHeaderCellProps,
-) => renderFunction(<CoinRowHeaderCell {...props} />);
-
-const defaultProps = {
+const defaultProps: CoinRowHeaderCellProps = {
   onClick: jest.fn(),
   displayText: 'name',
   tableSortType: TableSortType.Name,
@@ -18,17 +12,30 @@ const defaultProps = {
 
 describe('CoinRowHeaderCell', () => {
   it('renders as expected (no sortedIcon)', () => {
-    expect(render(shallow, defaultProps)).toMatchSnapshot();
+    const { asFragment } = render(<CoinRowHeaderCell {...defaultProps} />);
+    expect(asFragment).toMatchSnapshot();
   });
 
   it('renders as expected (ascending)', () => {
     const sortedIcon = <ArrowDropUpIcon fontSize="small" />;
-    expect(render(shallow, { ...defaultProps, sortedIcon })).toMatchSnapshot();
+    const { asFragment } = render(
+      <CoinRowHeaderCell
+        sortedIcon={sortedIcon}
+        {...defaultProps}
+      />,
+    );
+    expect(asFragment).toMatchSnapshot();
   });
 
-  it('renders as expected (ascending)', () => {
+  it('renders as expected (descending)', () => {
     const sortedIcon = <ArrowDropUpIcon fontSize="small" />;
-    expect(render(shallow, { ...defaultProps, sortedIcon, defaultSortDirection: TableSortDirection.Descending }))
-      .toMatchSnapshot();
+    const { asFragment } = render(
+      <CoinRowHeaderCell
+        sortedIcon={sortedIcon}
+        defaultSortDirection={TableSortDirection.Descending}
+        {...defaultProps}
+      />,
+    );
+    expect(asFragment).toMatchSnapshot();
   });
 });

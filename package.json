@@ -21,6 +21,7 @@
     "superagent": "^6.1.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.11.2",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
     "enzyme": "^3.11.0",
