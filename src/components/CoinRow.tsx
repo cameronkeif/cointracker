@@ -45,8 +45,7 @@ const CoinRow: React.FC<CoinRowProps> = ({ coin, onRemove }: CoinRowProps) => (
         style={{ color: red[500], cursor: 'pointer' }}
         fontSize="small"
         onClick={() => onRemove(coin.symbol)}
-        title="Remove"
-        aria-label="Remove"
+        titleAccess="Remove"
       />
     </td>
   </tr>

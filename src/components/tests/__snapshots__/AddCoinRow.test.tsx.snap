@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AddCoinRow renders correctly (with selectedSymbols populated) 1`] = `ShallowWrapper {}`;
+exports[`AddCoinRow renders correctly (with selectedSymbols empty) 1`] = `[Function]`;
 
-exports[`AddCoinRow renders correctly 1`] = `ShallowWrapper {}`;
+exports[`AddCoinRow renders correctly (with selectedSymbols populated) 1`] = `[Function]`;
