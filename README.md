@@ -1,5 +1,7 @@
 ## Cointracker 
 
+### This project no longer works due to a change in the Coinranking API requiring a paid plan
+
 A simple side project to teach myself TypeScript alongside React. I specifically wanted something with a simple to use public API that would allow me to build something complex enough to make API calls, handle errors, etc. and allow users to do some manipulation of the page, but not the full overhead necessary to create a CRUD app and run a data store behind the scenes.
 
 Specifically I am looking to learn in this project:
