@@ -10,10 +10,10 @@ import coinOptions from '../data/coin-options.json';
 
 export type AddCoinRowProps = {
   onAdd: Function,
-  selectedSymbols: Set<string>
+  selectedUuids: Set<string>
 };
 
-const AddCoinRow: React.FC<AddCoinRowProps> = ({ onAdd, selectedSymbols }: AddCoinRowProps) => {
+const AddCoinRow: React.FC<AddCoinRowProps> = ({ onAdd, selectedUuids }: AddCoinRowProps) => {
   const [selectedCoin, setSelectedCoin] = React.useState<null | CoinOption>(null);
 
   const addCoin = () => {
@@ -34,7 +34,7 @@ const AddCoinRow: React.FC<AddCoinRowProps> = ({ onAdd, selectedSymbols }: AddCo
     >
       <Autocomplete
         id="combo-box-demo"
-        options={coinOptions.filter((coinOption: CoinOption) => !selectedSymbols.has(coinOption.symbol))}
+        options={coinOptions.filter((coinOption: CoinOption) => !selectedUuids.has(coinOption.uuid))}
         style={{ width: 300, margin: 'auto', display: 'inline-block' }}
         renderInput={(params: AutocompleteRenderInputParams) => (
           <TextField
@@ -48,7 +48,7 @@ const AddCoinRow: React.FC<AddCoinRowProps> = ({ onAdd, selectedSymbols }: AddCo
         getOptionLabel={(coinOption: CoinOption) => `${coinOption.name} (${coinOption.symbol})`}
         onChange={(
           event: ChangeEvent<{}>,
-          newSelectedCoin: { name: string; symbol: string; } | null,
+          newSelectedCoin: CoinOption | null,
         ) => { setSelectedCoin(newSelectedCoin); }}
         onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
           if (event.key === 'Enter') {

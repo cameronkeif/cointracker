@@ -39,6 +39,6 @@ describe('CoinRow.tsx', () => {
       />,
     );
     fireEvent.click(screen.getByTitle('Remove'));
-    expect(onRemove).toHaveBeenCalledWith(coinItem.symbol);
+    expect(onRemove).toHaveBeenCalledWith(coinItem.uuid);
   });
 });

@@ -32,10 +32,10 @@ const CoinRow: React.FC<CoinRowProps> = ({ coin, onRemove }: CoinRowProps) => (
       }
     </td>
     <td className={coin.change >= 0 ? 'positive-change' : 'negative-change'}>
-      {coin.change.toFixed(2)}
+      {coin.change}
       %
       <span className="sparkline-container">
-        <Sparklines data={coin.history.map((price) => parseFloat(price))} svgWidth={50} svgHeight={15} margin={5}>
+        <Sparklines data={coin.sparkline.map((price) => parseFloat(price))} svgWidth={50} svgHeight={15} margin={5}>
           <SparklinesLine color={coin.change >= 0 ? 'green' : 'red'} />
         </Sparklines>
       </span>
@@ -44,7 +44,7 @@ const CoinRow: React.FC<CoinRowProps> = ({ coin, onRemove }: CoinRowProps) => (
       <RemoveIcon
         style={{ color: red[500], cursor: 'pointer' }}
         fontSize="small"
-        onClick={() => onRemove(coin.symbol)}
+        onClick={() => onRemove(coin.uuid)}
         titleAccess="Remove"
       />
     </td>

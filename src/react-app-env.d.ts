@@ -8,13 +8,14 @@ interface CoinItem {
   change: number,
   uuid: string,
   iconUrl: string,
-  history: Array<string>,
+  sparkline: Array<string>,
 }
 
 // Used for the Autocomplete option to be used for coin selection
 interface CoinOption {
   name: string,
   symbol: string,
+  uuid: string,
 }
 
 // The representation returned from the API

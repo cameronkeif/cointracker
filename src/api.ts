@@ -1,10 +1,10 @@
 import request from 'superagent';
 
-const getCoinData = async (symbols: Set<String>) => {
+const getCoinData = async (uuids: Set<String>) => {
   const response = await request
-    .get('https://api.coinranking.com/v1/public/coins')
+    .get('https://api.coinranking.com/v2/coins')
     .query({
-      symbols: Array.from(symbols).join(','),
+      uuids: Array.from(uuids).join(','),
     })
     .set('Accept', 'application/json');
   return response;

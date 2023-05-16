@@ -7,7 +7,7 @@ const coinItem: CoinItem = {
   uuid: 'Qwsogvtv82FCd',
   price: '55099.8441599246',
   iconUrl: 'https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg',
-  history: [
+  sparkline: [
     '59547.2254121337',
     '59395.9729990671',
     '59525.3532059018',

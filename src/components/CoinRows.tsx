@@ -65,7 +65,7 @@ const sortCoins = (coins: Array<CoinItem>, tableSort: TableSort): void => {
 };
 
 const CoinRows: React.FC = () => {
-  const [symbols, setSymbols] = React.useState<Set<string>>(new Set());
+  const [uuids, setUuids] = React.useState<Set<string>>(new Set());
   const [coins, setCoins] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [activeTimerId, setActiveTimerId] = React.useState<null | NodeJS.Timeout>(null);
@@ -74,26 +74,26 @@ const CoinRows: React.FC = () => {
   );
 
   const addCoin = (selectedCoin: CoinOption): void => {
-    const updatedSymbols = new Set(symbols);
-    updatedSymbols.add(selectedCoin.symbol);
+    const updatedUuids = new Set(uuids);
+    updatedUuids.add(selectedCoin.uuid);
 
-    setSymbols(updatedSymbols);
+    setUuids(updatedUuids);
 
     if (activeTimerId) {
       clearInterval(activeTimerId);
     }
   };
 
-  const removeCoin = (symbol: string): void => {
-    const updatedSymbols = new Set(symbols);
-    updatedSymbols.delete(symbol);
-    setSymbols(updatedSymbols);
+  const removeCoin = (uuid: string): void => {
+    const updatedUuids = new Set(uuids);
+    updatedUuids.delete(uuid);
+    setUuids(updatedUuids);
 
     if (activeTimerId) {
       clearInterval(activeTimerId);
     }
 
-    if (updatedSymbols.size === 0) {
+    if (updatedUuids.size === 0) {
       setCoins([]);
     }
   };
@@ -111,24 +111,24 @@ const CoinRows: React.FC = () => {
   };
 
   useEffect(() => {
-    if (symbols.size === 0) {
+    if (uuids.size === 0) {
       return;
     }
 
-    api.getCoinData(symbols)
+    api.getCoinData(uuids)
       .then((res: request.Response) => {
         setCoins(res.body.data.coins);
         setIsLoading(false); // Clear initial loading state.
       });
     setActiveTimerId(setInterval(() => {
       setIsLoading(true);
-      api.getCoinData(symbols)
+      api.getCoinData(uuids)
         .then((res: request.Response) => {
           setCoins(res.body.data.coins);
           setIsLoading(false);
         });
     }, 15000));
-  }, [symbols]);
+  }, [uuids]);
 
   sortCoins(coins, tableSortType);
 
@@ -181,8 +181,8 @@ const CoinRows: React.FC = () => {
           {coinRows}
         </tbody>
       </table>
-      <AddCoinRow onAdd={addCoin} selectedSymbols={symbols} />
-      {isLoading && symbols.size > 0 && <div><img src={spinnerIcon} className="loading" alt="Loading" /></div>}
+      <AddCoinRow onAdd={addCoin} selectedUuids={uuids} />
+      {isLoading && uuids.size > 0 && <div><img src={spinnerIcon} className="loading" alt="Loading" /></div>}
     </Fragment>
   );
 };
