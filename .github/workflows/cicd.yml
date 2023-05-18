@@ -29,3 +29,16 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    
+  deploy-staging:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: jsmrcaga/action-netlify-deploy@master
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_MESSAGE: "Staging deploy v${{ github.ref }}"
+          deploy_alias: staging
