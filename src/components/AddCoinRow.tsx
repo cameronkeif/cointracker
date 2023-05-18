@@ -4,8 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Autocomplete, { AutocompleteRenderInputParams } from '@material-ui/lab/Autocomplete';
-
-import { CoinOption } from '../react-app-env';
+import { CoinOption } from '../types/CoinOption';
 import coinOptions from '../data/coin-options.json';
 
 export type AddCoinRowProps = {

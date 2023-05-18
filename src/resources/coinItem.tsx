@@ -1,4 +1,4 @@
-import { CoinItem } from '../react-app-env';
+import { CoinItem } from '../types/CoinItem';
 
 const coinItem: CoinItem = {
   change: -2.06,

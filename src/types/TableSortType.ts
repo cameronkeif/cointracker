@@ -5,7 +5,4 @@ export enum TableSortType {
   Change = 'change',
 }
 
-export enum TableSortDirection {
-  Ascending,
-  Descending,
-}
+export default TableSortType;

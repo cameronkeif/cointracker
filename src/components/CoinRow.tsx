@@ -2,8 +2,7 @@ import React from 'react';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import { red } from '@material-ui/core/colors';
 import RemoveIcon from '@material-ui/icons/RemoveCircle';
-
-import { CoinItem } from '../react-app-env';
+import { CoinItem } from '../types/CoinItem';
 
 export type CoinRowProps = {
   coin: CoinItem,
