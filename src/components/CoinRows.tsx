@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
-
+import { toast } from 'react-toastify';
 import request from 'superagent';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -16,6 +16,8 @@ export type TableSort = {
   sortType: TableSortType,
   sortDirection: TableSortDirection
 };
+
+const UPDATE_ERROR_MESSAGE = 'An error occurred while updating. Trying again shortly.';
 
 const sortCoins = (coins: Array<CoinItem>, tableSort: TableSort): void => {
   const { sortType, sortDirection } = tableSort;
@@ -119,15 +121,17 @@ const CoinRows: React.FC = () => {
       .then((res: request.Response) => {
         setCoins(res.body.data.coins);
         setIsLoading(false); // Clear initial loading state.
-      });
+      })
+      .catch(() => { toast.error(UPDATE_ERROR_MESSAGE); });
     setActiveTimerId(setInterval(() => {
       setIsLoading(true);
       api.getCoinData(uuids)
         .then((res: request.Response) => {
           setCoins(res.body.data.coins);
           setIsLoading(false);
-        });
-    }, 15000));
+        })
+        .catch(() => { toast.error(UPDATE_ERROR_MESSAGE); });
+    }, 60000));
   }, [uuids]);
 
   sortCoins(coins, tableSortType);

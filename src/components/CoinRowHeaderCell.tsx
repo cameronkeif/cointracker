@@ -26,9 +26,15 @@ const CoinRowHeaderCell: React.FC<CoinRowHeaderCellProps> = ({
       onClick={() => onClick(tableSortType, defaultSortDirection)}
       role="button"
       tabIndex={0}
+      style={{
+        overflow: 'auto',
+        whiteSpace: 'nowrap',
+      }}
     >
-      {displayText}
-      {sortedIcon}
+      <span>
+        {displayText}
+        {sortedIcon}
+      </span>
     </div>
   </th>
 );
