@@ -2,12 +2,14 @@ import React from 'react';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import { render } from '@testing-library/react';
 import CoinRowHeaderCell, { CoinRowHeaderCellProps } from '../CoinRowHeaderCell';
-import { TableSortDirection, TableSortType } from '../../utilities/enums';
+import { TableSortDirection } from '../../types/TableSortDirection';
+import { TableSortType } from '../../types/TableSortType';
 
 const defaultProps: CoinRowHeaderCellProps = {
   onClick: jest.fn(),
   displayText: 'name',
   tableSortType: TableSortType.Name,
+  sortedIcon: <ArrowDropUpIcon fontSize="small" />,
 };
 
 describe('CoinRowHeaderCell', () => {
@@ -17,10 +19,8 @@ describe('CoinRowHeaderCell', () => {
   });
 
   it('renders as expected (ascending)', () => {
-    const sortedIcon = <ArrowDropUpIcon fontSize="small" />;
     const { asFragment } = render(
       <CoinRowHeaderCell
-        sortedIcon={sortedIcon}
         {...defaultProps}
       />,
     );
@@ -28,10 +28,8 @@ describe('CoinRowHeaderCell', () => {
   });
 
   it('renders as expected (descending)', () => {
-    const sortedIcon = <ArrowDropUpIcon fontSize="small" />;
     const { asFragment } = render(
       <CoinRowHeaderCell
-        sortedIcon={sortedIcon}
         defaultSortDirection={TableSortDirection.Descending}
         {...defaultProps}
       />,

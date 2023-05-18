@@ -10,43 +10,55 @@ exports[`CoinRows renders correctly - empty 1`] = `
         <th>
           <div
             role="button"
+            style="overflow: auto; white-space: nowrap;"
             tabindex="0"
           >
-            Name
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
-              focusable="false"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 14l5-5 5 5z"
-              />
-            </svg>
+            <span>
+              Name
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 14l5-5 5 5z"
+                />
+              </svg>
+            </span>
           </div>
         </th>
         <th>
           <div
             role="button"
+            style="overflow: auto; white-space: nowrap;"
             tabindex="0"
           >
-            Symbol
+            <span>
+              Symbol
+            </span>
           </div>
         </th>
         <th>
           <div
             role="button"
+            style="overflow: auto; white-space: nowrap;"
             tabindex="0"
           >
-            Price
+            <span>
+              Price
+            </span>
           </div>
         </th>
         <th>
           <div
             role="button"
+            style="overflow: auto; white-space: nowrap;"
             tabindex="0"
           >
-            Change (24 hours)
+            <span>
+              Change (24 hours)
+            </span>
           </div>
         </th>
       </tr>
