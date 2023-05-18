@@ -73,6 +73,10 @@ const CoinRows: React.FC = () => {
     { sortType: TableSortType.Name, sortDirection: TableSortDirection.Ascending },
   );
 
+  if (window.location.search === '?foo=bar') {
+    console.log('test'); // eslint-disable-line no-console
+  }
+
   const addCoin = (selectedCoin: CoinOption): void => {
     const updatedUuids = new Set(uuids);
     updatedUuids.add(selectedCoin.uuid);
