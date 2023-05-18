@@ -8,14 +8,12 @@ import AddCoinRow from './AddCoinRow';
 import CoinRow from './CoinRow';
 import CoinRowHeaderCell from './CoinRowHeaderCell';
 import api from '../api';
-import { CoinItem, CoinOption } from '../react-app-env';
+import { CoinItem } from '../types/CoinItem';
+import { CoinOption } from '../types/CoinOption';
 import spinnerIcon from '../assets/spinner.png';
-import { TableSortType, TableSortDirection } from '../utilities/enums';
-
-export type TableSort = {
-  sortType: TableSortType,
-  sortDirection: TableSortDirection
-};
+import { TableSort } from '../types/TableSort';
+import { TableSortDirection } from '../types/TableSortDirection';
+import { TableSortType } from '../types/TableSortType';
 
 const UPDATE_ERROR_MESSAGE = 'An error occurred while updating. Trying again shortly.';
 

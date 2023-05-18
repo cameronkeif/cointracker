@@ -1,5 +1,6 @@
 import React from 'react';
-import { TableSortDirection, TableSortType } from '../utilities/enums';
+import { TableSortDirection } from '../types/TableSortDirection';
+import { TableSortType } from '../types/TableSortType';
 
 export type CoinRowHeaderCellProps = {
   onClick: Function,
