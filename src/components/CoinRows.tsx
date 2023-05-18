@@ -118,7 +118,7 @@ const CoinRows: React.FC = () => {
     api.getCoinData(uuids)
       .then((res: request.Response) => {
         setCoins(res.body.data.coins);
-        setIsLoading(false); // Clear initial loading state.
+        setIsLoading(false); // Clear initial loading state
       })
       .catch(() => { toast.error(UPDATE_ERROR_MESSAGE); });
     setActiveTimerId(setInterval(() => {
